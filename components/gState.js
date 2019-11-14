@@ -30,7 +30,7 @@ function useLocalJSONStore(key, defaultValue) {
 const StoreContext = React.createContext();
 
 const StoreProvider = ({children,store}) => (
-<StoreContext.Provider store={store}>{children}</StoreContext.Provider>
+<StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 );
 
 const store = useContext(StoreContext);
