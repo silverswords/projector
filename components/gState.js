@@ -2,20 +2,20 @@
 import React, { useEffect, useState } from 'react';
 
 // template 
-function useJSONState(getdata,setdata,key, defaultValue) {
-  const [state, setState] = useState(() =>JSON.parse(getdata())|| defaultValue);
+function useStore(getdata,setdata, defaultValue) {
+  const [state, setState] = useState(() => getdata()|| defaultValue);
 
   useEffect(() => {
-    setdata(key, JSON.stringify(state));
-  }, [key, state]);
+    setdata();
+  });
   return [state, setState];
 }
 
 
 // ----------------------------------------------------------------
 // use Local Store
-function useLocalJSONState(key, defaultValue) {
-    const [state, setState] = React.useState(
+function useLocalJSONStore(key, defaultValue) {
+    const [state, setState] = useState(
       () => JSON.parse(localStorage.getItem(key)) || defaultValue
     );
     useEffect(() => {
@@ -27,3 +27,10 @@ function useLocalJSONState(key, defaultValue) {
 // ----------------------------------------------------------------
 // use Context be whole store
 // https://reactjs.org/docs/hooks-reference.html#usecontext
+const StoreContext = React.createContext();
+
+const StoreProvider = ({children,store}) => (
+<StoreContext.Provider store={store}>{children}</StoreContext.Provider>
+);
+
+const store = useContext(StoreContext);
