@@ -1,7 +1,7 @@
 import React ,{ useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
-import {useLocalJSONStore} from '../components/gState'
+import {useLocalJSONStore} from '../components/localsharestate'
 
 const Home = () => (
   <div>
@@ -23,7 +23,6 @@ const Home = () => (
           <h3>Documentation &rarr;</h3>
           <p>Learn more about Next.js in the documentation.</p>
         </a>
-        <Counter key='count' initialCount='0'></Counter>
         <a href='https://nextjs.org/learn' className='card'>
           <h3>Next.js Learn &rarr;</h3>
           <p>Learn about Next.js by following an interactive tutorial!</p>
@@ -36,6 +35,10 @@ const Home = () => (
           <p>Find other example boilerplates on the Next.js GitHub.</p>
         </a>
       </div>
+
+      <Counter key='count' initialCount='0'></Counter>
+
+      <AnotherCounter key='count' initialCount='0'></AnotherCounter>
     </div>
 
     <style jsx>{`
@@ -88,6 +91,18 @@ const Home = () => (
 )
 
 function Counter({key,initialCount}) {
+  const [count, setCount] = useLocalJSONStore(key, initialCount);
+  return (
+    <>
+      Count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+    </>
+  );
+}
+
+function AnotherCounter({key,initialCount}) {
   const [count, setCount] = useLocalJSONStore(key, initialCount);
   return (
     <>
