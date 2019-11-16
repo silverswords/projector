@@ -1,10 +1,18 @@
 // use Store
 import React, { useEffect, useState } from 'react';
 
+class Connecter extends React.Component{
+
+}
+class Store extends React.Component{
+
+}
+
+
 var localStorage = require('localStorage')
 // ----------------------------------------------------------------
 // use Local Store
-export function useLocalJSONStore(key, defaultValue) {
+function useLocalJSONStore(key, defaultValue) {
     const [state, setState] = useState(
       () => JSON.parse(localStorage.getItem(key)) || defaultValue
     );
@@ -12,4 +20,21 @@ export function useLocalJSONStore(key, defaultValue) {
       localStorage.setItem(key, JSON.stringify(state));
     }, [key, state]);
     return [state, setState];
+}
+
+function Chain(outer, ...others) {
+  return (next) => {
+    for (i=others.length-1 ;i >=0;i--){
+      next = others[i](next);
+    }
+    return outer(next)
+  }
+}
+
+function getJSONFromLocalStorage(key) {
+  JSON.parse(localStorage.getItem(key))
+}
+
+function setJSONFromLocalStorage(key,data) {
+  localStorage.setItem(key, JSON.stringify(data))
 }
