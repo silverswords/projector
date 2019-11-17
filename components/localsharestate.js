@@ -1,14 +1,6 @@
 // use Store
 import React, { useEffect, useState } from 'react';
 
-class Connecter extends React.Component{
-
-}
-class Store extends React.Component{
-
-}
-
-
 var localStorage = require('localStorage')
 // ----------------------------------------------------------------
 // use Local Store

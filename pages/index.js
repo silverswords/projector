@@ -2,6 +2,7 @@ import React ,{ useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 import {useLocalJSONStore} from '../components/localsharestate'
+import {useStore} from '../components/Connector'
 
 const Home = () => (
   <div>
@@ -91,25 +92,53 @@ const Home = () => (
 )
 
 function Counter({key,initialCount}) {
-  const [count, setCount] = useLocalJSONStore(key, initialCount);
+  // const [count, setCount] = useLocalJSONStore(key, initialCount);
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'increment':
+        return {count: state.count + 1};
+      case 'decrement':
+        return {count: state.count - 1};
+      case 'initialCount':
+        return {count: 0};
+      default:
+        throw new Error();
+    }
+  }
+
+  const [state, dispatch] = useStore('count',reducer,0)
   return (
     <>
-      Count: {count}
-      <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'initialCount'})}>Reset</button>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
 
 function AnotherCounter({key,initialCount}) {
-  const [count, setCount] = useLocalJSONStore(key, initialCount);
+  // const [count, setCount] = useLocalJSONStore(key, initialCount);
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'increment':
+        return {count: state.count + 1};
+      case 'decrement':
+        return {count: state.count - 1};
+      case 'initialCount':
+        return {count: 0};
+      default:
+        throw new Error();
+    }
+  }
+
+  const [state, dispatch] = useStore('count',reducer,0)
   return (
     <>
-      Count: {count}
-      <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'initialCount'})}>Reset</button>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
