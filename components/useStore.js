@@ -1,5 +1,4 @@
-import React , { useEffect, useState } from 'react'
-import Connector,{Broadcast} from './Connector'
+import {Broadcast} from './Connector'
 const Store = {}
 
 export function useStore(key,value) {
@@ -9,9 +8,7 @@ export function useStore(key,value) {
     val = Store[key]
     connect(key)
 
-    return value
-}
-
-export function Action(key,value) {
-    Broadcast(key,value)
+    return value, (key,value) => {
+        Broadcast(key,value)
+    }
 }
