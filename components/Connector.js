@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 // Design
 // Action = Endpoint
 // Decorators = Middleware
+export {Broadcast,Subscribe,UnSubscribe}
 const Connector = {}
 
 const Broadcast = (name, state) => {
@@ -14,7 +15,7 @@ const Subscribe = (name, setter) => {
     Connector[name].push(setter)
 }
 
-const unSubscribe = (name, setter) => {
+const UnSubscribe = (name, setter) => {
     if (!Connector[name]) return
     const index = Connector[name].indexOf(setter)
     if (index !== -1) Connector[name].splice(index, 1)
@@ -24,6 +25,6 @@ const connect = () => {
     [, setState] = useState()
     useEffect(() =>{
         Subscribe(name, setState)
-        return () => unSubscribe(name,setState)
+        return () => UnSubscribe(name,setState)
     },[])
 }
