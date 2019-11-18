@@ -20,8 +20,8 @@ const unSubscribe = (name, setter) => {
     if (index !== -1) Connector[name].splice(index, 1)
 }
 
-const connect = (name) => {
-    [state, setState] = useState(name)
+const connect = () => {
+    [, setState] = useState()
     useEffect(() =>{
         Subscribe(name, setState)
         return () => unSubscribe(name,setState)
