@@ -1,34 +1,37 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+
 // Design
 // Action = Endpoint
 // Decorators = Middleware
-export {Broadcast,Subscribe,UnSubscribe,connect}
+
 const Connector = {}
 
-const Broadcast = (name, state) => {
-    if (!Connector[name]) return;
-    Connector[name].forEach(setter => setter(state))
+const Broadcast = (namespace, state) => {
+    if (!Connector[namespace]) return;
+    Connector[namespace].forEach(setter => setter(state))
 }
 
-const Subscribe = (name, setter) => {
-    if (!Connector[name]) Connector[name] =[];
-    Connector[name].push(setter)
+const Subscribe = (namespace, setter) => {
+    if (!Connector[namespace]) Connector[namespace] =[];
+    Connector[namespace].push(setter)
 }
 
-const UnSubscribe = (name, setter) => {
-    if (!Connector[name]) return
-    const index = Connector[name].indexOf(setter)
-    if (index !== -1) Connector[name].splice(index, 1)
+const UnSubscribe = (namespace, setter) => {
+    if (!Connector[namespace]) return
+    const index = Connector[namespace].indexOf(setter)
+    if (index !== -1) Connector[namespace].splice(index, 1)
 }
 
-const connect = (name,setState) => {
+const connect = (namespace,setState) => {
     console.log('connect')
     useEffect(() =>{
-        Subscribe(name, setState)
-        console.log('subscirbe',name)
+        Subscribe(namespace, setState)
+        console.log('subscirbe',namespace)
         return () => {
-            UnSubscribe(name,setState)
-            console.log('unsubscribe',name)
+            UnSubscribe(namespace,setState)
+            console.log('unsubscribe',namespace)
         }
     },[])
 }
+
+export {Broadcast,Subscribe,UnSubscribe,connect}
