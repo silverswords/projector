@@ -2,7 +2,7 @@ import React ,{ useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 import {useLocalJSONStore} from '../components/localsharestate'
-import {useStore} from '../components/Connector'
+import {Counter} from '../components/counter'
 
 const Home = () => (
   <div>
@@ -37,9 +37,8 @@ const Home = () => (
         </a>
       </div>
 
-      <Counter key='count' initialCount='0'></Counter>
-
-      <AnotherCounter key='count' initialCount='0'></AnotherCounter>
+      <Counter keyname='count' initialCount={0}></Counter>
+      <Counter keyname='count' initialCount={0}></Counter>
     </div>
 
     <style jsx>{`

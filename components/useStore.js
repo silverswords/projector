@@ -1,14 +1,12 @@
-import {Broadcast} from './Connector'
+import {Broadcast,connect} from './Connector'
+import {useState} from 'react'
 const Store = {}
 
 export function useStore(key,value) {
-    if (Store[key] !== undefined) {
-        Store[key] = value
-    }
-    val = Store[key]
-    connect(key)
+    const [state,setState] = useState(value)
+    connect(key,setState)
 
-    return value, (key,value) => {
+    return [state, (key,value) => {
         Broadcast(key,value)
-    }
+    }]
 }
