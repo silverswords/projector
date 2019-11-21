@@ -1,0 +1,6 @@
+[submodule "refer/js-ipfs"]
+	path = refer/js-ipfs
+	url = https://github.com/ipfs/js-ipfs.git
+[submodule "refer/magnetic"]
+	path = refer/magnetic
+	url = https://github.com/silverswords/magnetic.git
