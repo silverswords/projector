@@ -1,4 +1,6 @@
 const { BrowserWindow } = require('electron')
+const IPFS = require('ipfs')
+
 
 let mainWindow
 const baseURL = 'http://localhost:3000'

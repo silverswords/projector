@@ -42,18 +42,6 @@ const macOSTemplate = [
     label: 'Experimental',
     submenu: [
       {
-        label: 'Leaflet',
-        click: async () => {
-          onLoadPage('leaflet')
-        }
-      },
-      {
-        label: 'Mermaid',
-        click: async () => {
-          onLoadPage('mermaid')
-        }
-      },
-      {
         label: 'ipfs',
         click: async () => {
             onLoadPage('ipfs')

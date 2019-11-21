@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "eslint": "^6.6.0",
+    "ipfs": "^0.39.0",
     "localStorage": "^1.0.4",
     "next": "^9.1.4",
     "react": "^16.12.0",
