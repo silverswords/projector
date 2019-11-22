@@ -2,7 +2,7 @@ const { app } = require('electron')
 
 const Listener = require('./utility/listener')
 const { createWindow, onActivateWindow } = require('./handlers/window')
-const { onRunIPFS } = require('./handlers/ipfs')
+const IPFS = require('ipfs')
 const { onCreateMenu } = require('./menu')
 
 const listener = new Listener()
