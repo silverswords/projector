@@ -10,48 +10,99 @@ const IPFSUI = () => {
     return (
     <div>
       <Head>
-        <title>IPFS</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
 
-      <header className='flex items-center pa3 bg-navy bb bw3 b--aqua'>
-        <a href='https://ipfs.io' title='home'>
-          <img alt='IPFS logo' src={logo} style={{ height: 50 }} className='v-top' />
-        </a>
-        <h1 className='flex-auto ma0 tr f3 fw2 montserrat aqua'>IPFS React</h1>
+    <meta name="theme-color" content="#000000" />
+  
+    <title>IPFS</title>
+      </Head>
+      <div className='hero'>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+
+      <header >
+        <h1 className='title'>IPFS</h1>
+        <p className='description'>
+        To get started.
+      </p>
       </header>
+
+      <div className='row'>
       <main>
         {ipfsInitError && (
-          <div className='bg-yellow pa4 mw7 center mv4 white'>
+          <div >
             Error: {ipfsInitError.message || ipfsInitError}
           </div>
         )}
         {id && <IpfsId {...id} />}
       </main>
+      </div>
+      
+      </div>
+
+      <style jsx>{`
+       .hero {
+        width: 100%;
+        color: #333;
+      }
+      .title {
+        margin: 0;
+        width: 100%;
+        padding-top: 80px;
+        line-height: 1.15;
+        font-size: 48px;
+      }
+      .title,
+      .description {
+        text-align: center;
+      }
+      .row {
+        max-width: 880px;
+        margin: 80px auto 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+    `}</style>
      </div>
     )
-}
-
-const Title = ({ children }) => {
-  return (
-    <h2 className='f5 ma0 pb2 tracked aqua fw4 montserrat'>{children}</h2>
-  )
 }
 
 const IpfsId = (props) => {
   if (!props) return null
   return (
-    <section className='bg-snow mw7 center mt5'>
-      <h1 className='f3 fw4 ma0 pv3 aqua montserrat tc' data-test='title'>Connected to IPFS</h1>
-      <div className='pa4'>
+    <div>
+      <div className='card'>
         {['id', 'agentVersion'].map((key) => (
-          <div className='mb4' key={key}>
-            <Title>{key}</Title>
-            <div className='bg-white pa2 br2 truncate monospace' data-test={key}>{props[key]}</div>
+          <div key={key}>
+            <h3>{key}</h3>
+            <p>{props[key]}</p>
           </div>
         ))}
       </div>
-    </section>
+      <style jsx>{`
+        .card {
+          padding: 20px 20px 24px;
+          width: 350px;
+          text-align: left;
+          text-decoration: none;
+          color: #43FFFF;
+          border: 1px solid #9b9b9b;
+        }
+        .card:hover {
+          border-color: #067df7;
+        }
+        .card h3 {
+          margin: 0;
+          color: #067df7;
+          font-size: 18px;
+        }
+        .card p {
+          margin: 0;
+          padding: 12px 0 0;
+          font-size: 13px;
+          color: #333;
+        }
+        `}</style>
+    </div>
   )
 }
 

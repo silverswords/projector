@@ -1,8 +1,7 @@
 import React ,{ useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
-import {useLocalJSONStore} from '../components/localsharestate'
-import {Counter} from '../components/counter'
+import {Counter} from '../components/useStore/counter'
 
 const Home = () => (
   <div>
