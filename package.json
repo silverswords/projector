@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/react": "^16.9.11",
     "concurrently": "^5.0.0",
-    "electron": "^7.1.0",
+    "electron": "^11.5.0",
     "eslint-plugin-react-hooks": "^2.2.0"
   }
 }
